@@ -2,13 +2,10 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
+  - Response 
+
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -19,221 +16,185 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Clipboard API! With it you can: get an API key, set and get clipboard contents.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+
 
 # Authentication
 
-> To authorize, use this code:
+>The Request returns JSON structured like this:
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+```Response 
+{
+    "access_token": "",
+    "scope": "read write",
+    "refresh_token": "",
+    "token_type": "Bearer",
+    "expires_in": 36000
+}
 ```
 
-```python
-import kittn
+Clipboard uses API keys to allow access to the API. Use the following API endpoint to create an account and get a API key.
 
-api = kittn.authorize('meowmeowmeow')
+
+###HTTP Request
+
+`POST http://example.com/sign_up`
+
+###Body Parameters
+Parameter  | Description
+---------  | -----------
+username  | The username for a new account
+password  | The password associated with username
+
+
+Clipboard expects for the API key to be included in all API requests to the server in a header that looks like the following:
+
+`Authorization: Bearer API_KEY_HERE`
+
+<aside class="warning">
+The user name must be unique 
+</aside>
+<aside class="notice">
+You must replace <code>API_KEY_HERE</code> with your personal API key.
+</aside>
+
+# Clipboard
+
+##Set Data
+This endpoint creates a new clipboard and sets the contents.
+
+> The setData command returns JSON structured like this:
+
+```Response
+{
+  "id": "LxF4yGsq",
+
+}
 ```
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
 
-```javascript
-const kittn = require('kittn');
 
-let api = kittn.authorize('meowmeowmeow');
-```
+###HTTP Request
 
-> Make sure to replace `meowmeowmeow` with your API key.
+`POST http://example.com/api/clipboard`
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+###Body Parameters
+###Text Upload
+Parameter   | Description
+---------    | ---------
+username        | The username 
+password        |  The password
+text            | The text to be uploaded 
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: meowmeowmeow`
+###File Upload
+Parameter  | Description
+---------  | -----------
+username        | The username 
+password        |  The password
+file | The file to be uploaded 
+
+<aside class="warning">
+Files are limited to <code>1 MB</code> in size.
+</aside>
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+This id is required to retrive the data when executing the getData Request
 </aside>
 
-# Kittens
 
-## Get All Kittens
 
-```ruby
-require 'kittn'
+## Get Data
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
+This endpoint retrieves a specific clipboard's content.
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
 
 ### HTTP Request
+> The response for text returns JSON structured like this:
 
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
+```Response
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+    "data": "text"
 }
 ```
 
-This endpoint retrieves a specific kitten.
+`GET http://example.com/api/clipboard/getData/?session_id=[id]`
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
 
-### HTTP Request
+<aside class="notice">
+The response for file downloands has the<code>Content-Disposition </code> header setup for automatic download.
+</aside>
+<aside class="warning">
+Once a clipboard is retrieved, it is deleted.
+</aside>
 
-`GET http://example.com/kittens/<ID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
+id | The ID of the clipboard data to retrieve
 
-## Delete a Specific Kitten
+###Body Parameters
+Parameter   | Description
+---------    | ---------
+username        | The username 
+password        |  The password
 
-```ruby
-require 'kittn'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
+## Get Metadata
+This endpoint retrieves a specific clipboard media's metadata.
 
-```python
-import kittn
+> The response for text returns JSON structured like this:
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
+```Response
 {
-  "id": 2,
-  "deleted" : ":("
+    "entry": {
+        "session_id": "LfK6nnSq",
+        "creation_time": "2018-04-15T22:26:29.227258Z"
+    },
+    "media_type": "Text"
 }
 ```
 
-This endpoint deletes a specific kitten.
+> The response for a file returns JSON structured like this:
+
+```Response
+
+{
+    "entry": {
+        "session_id": "x2ORXMPE",
+        "creation_time": "2018-04-15T23:08:51.932987Z"
+    },
+    "FileMetaData": {
+        "file_name": "10677856_7r6NaRe.jpg",
+        "file_length": 3,
+        "file_type": "image/jpeg"
+    },
+    "media_type": "File"
+}
+```
+
+
+
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+`GET http://example.com/api/clipboard/getMetadata/?session_id=[id]`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to delete
+ID | The ID of the clipboard to retrieve
+
+###Body Parameters
+Parameter   | Description
+---------    | ---------
+username        | The username 
+password        |  The password
+
+
 
