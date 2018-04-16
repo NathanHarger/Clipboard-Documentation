@@ -101,7 +101,7 @@ Files are limited to <code>1 MB</code> in size.
 </aside>
 
 <aside class="notice">
-This id is required to retrive the data when executing the getData Request
+This id is required to retrive the data when executing the getData Request.
 </aside>
 
 
