@@ -273,7 +273,7 @@
 </code></pre>
 <p>Clipboard uses API keys to allow access to the API. Use the following API endpoint to create an account and get a API key.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST http://example.com/sign_up</code></p>
+<p><code>POST https://vast-chamber-77416.herokuapp.com/sign_up</code></p>
 <h3 id='body-parameters'>Body Parameters</h3>
 <table><thead>
 <tr>
@@ -313,7 +313,7 @@ You must replace <code>API_KEY_HERE</code> with your personal API key.
 
 }
 </code></pre><h3 id='http-request-2'>HTTP Request</h3>
-<p><code>POST http://example.com/api/clipboard</code></p>
+<p><code>POST https://vast-chamber-77416.herokuapp.com/api/clipboard</code></p>
 <h3 id='body-parameters-2'>Body Parameters</h3><h3 id='text-upload'>Text Upload</h3>
 <table><thead>
 <tr>
@@ -372,7 +372,7 @@ This id is required to retrive the data when executing the getData Request.
     "data": "text"
 }
 </code></pre>
-<p><code>GET http://example.com/api/clipboard/getData/?session_id=[id]</code></p>
+<p><code>GET https://vast-chamber-77416.herokuapp.com/api/clipboard/getData/?session_id=[id]</code></p>
 
 <aside class="notice">
 The response for file downloands has the<code>Content-Disposition </code> header setup for automatic download.
@@ -440,7 +440,7 @@ Once a clipboard is retrieved, it is deleted.
     "media_type": "File"
 }
 </code></pre><h3 id='http-request-4'>HTTP Request</h3>
-<p><code>GET http://example.com/api/clipboard/getMetadata/?session_id=[id]</code></p>
+<p><code>GET https://vast-chamber-77416.herokuapp.com/api/clipboard/getMetadata/?session_id=[id]</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
