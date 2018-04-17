@@ -40,7 +40,7 @@ Clipboard uses API keys to allow access to the API. Use the following API endpoi
 
 ###HTTP Request
 
-`POST http://example.com/sign_up`
+`POST https://vast-chamber-77416.herokuapp.com/sign_up`
 
 ###Body Parameters
 Parameter  | Description
@@ -78,7 +78,7 @@ This endpoint creates a new clipboard and sets the contents.
 
 ###HTTP Request
 
-`POST http://example.com/api/clipboard`
+`POST https://vast-chamber-77416.herokuapp.com/api/clipboard`
 
 ###Body Parameters
 ###Text Upload
@@ -120,7 +120,7 @@ This endpoint retrieves a specific clipboard's content.
 }
 ```
 
-`GET http://example.com/api/clipboard/getData/?session_id=[id]`
+`GET https://vast-chamber-77416.herokuapp.com/api/clipboard/getData/?session_id=[id]`
 
 
 <aside class="notice">
@@ -182,7 +182,7 @@ This endpoint retrieves a specific clipboard media's metadata.
 
 ### HTTP Request
 
-`GET http://example.com/api/clipboard/getMetadata/?session_id=[id]`
+`GET https://vast-chamber-77416.herokuapp.com/api/clipboard/getMetadata/?session_id=[id]`
 
 ### URL Parameters
 
