@@ -84,16 +84,12 @@ This endpoint creates a new clipboard and sets the contents.
 ###Text Upload
 Parameter   | Description
 ---------    | ---------
-username        | The username 
-password        |  The password
 text            | The text to be uploaded 
 
 
 ###File Upload
 Parameter  | Description
 ---------  | -----------
-username        | The username 
-password        |  The password
 file | The file to be uploaded 
 
 <aside class="warning">
@@ -137,11 +133,6 @@ Parameter | Description
 --------- | -----------
 id | The ID of the clipboard data to retrieve
 
-###Body Parameters
-Parameter   | Description
----------    | ---------
-username        | The username 
-password        |  The password
 
 
 ## Get Metadata
@@ -189,12 +180,6 @@ This endpoint retrieves a specific clipboard media's metadata.
 Parameter | Description
 --------- | -----------
 ID | The ID of the clipboard to retrieve
-
-###Body Parameters
-Parameter   | Description
----------    | ---------
-username        | The username 
-password        |  The password
 
 
 
